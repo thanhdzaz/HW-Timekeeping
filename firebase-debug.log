@@ -1,0 +1,50 @@
+[debug] [2022-09-02T08:40:07.211Z] ----------------------------------------------------------------------
+[debug] [2022-09-02T08:40:07.213Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Sloppy\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2022-09-02T08:40:07.214Z] CLI Version:   11.1.0
+[debug] [2022-09-02T08:40:07.214Z] Platform:      win32
+[debug] [2022-09-02T08:40:07.214Z] Node Version:  v16.15.0
+[debug] [2022-09-02T08:40:07.215Z] Time:          Fri Sep 02 2022 15:40:07 GMT+0700 (Indochina Time)
+[debug] [2022-09-02T08:40:07.215Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-09-02T08:40:07.286Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-09-02T08:40:07.286Z] > authorizing via signed-in user (camvanthnhaz@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\HW\fe-timekeeping
+
+Before we get started, keep in mind:
+
+  * You are currently outside your home directory
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2022-09-02T08:40:12.954Z] Using project from CLI flag: hardworking-8888
+[debug] [2022-09-02T08:40:12.955Z] > refreshing access token with scopes: []
+[debug] [2022-09-02T08:40:12.957Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2022-09-02T08:40:12.957Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2022-09-02T08:40:13.255Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2022-09-02T08:40:13.255Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2022-09-02T08:40:13.265Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/hardworking-8888 [none]
+[debug] [2022-09-02T08:40:13.668Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/hardworking-8888 200
+[debug] [2022-09-02T08:40:13.668Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/hardworking-8888 {"projectId":"hardworking-8888","projectNumber":"769195953001","displayName":"HardWorking","name":"projects/hardworking-8888","resources":{"hostingSite":"hardworking-8888","storageBucket":"hardworking-8888.appspot.com","locationId":"asia-northeast3"},"state":"ACTIVE","etag":"1_3f3ef2d5-369f-4c02-be38-f06faff82007"}
+[info] i  Using project hardworking-8888 (HardWorking) 
+[info] 
+=== Hosting Setup
+[info] 
+[info] Your public directory is the folder (relative to your project directory) that
+[info] will contain Hosting assets to be uploaded with firebase deploy. If you
+[info] have a build process for your assets, use your build's output directory.
+[info] 
