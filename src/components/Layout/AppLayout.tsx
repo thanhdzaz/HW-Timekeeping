@@ -67,7 +67,7 @@ const AppLayout = observer(
                             {pathname === '/' && (
                                 <Redirect
                                     from="/"
-                                    to="/dashboard" // default page for '/'
+                                    to="/attendance" // default page for '/'
                                 />
                             )}
                             {appRoutersAndChild

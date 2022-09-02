@@ -10,20 +10,15 @@ import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 export const firebaseApp = ():FirebaseApp=>
 {
     const firebaseConfig = {
-
-        apiKey: 'AIzaSyARze-3K4VgTqasVQOWHGxy_4C10PH4ow4',
-      
-        authDomain: 'hw-timekeeping.firebaseapp.com',
-      
-        projectId: 'hw-timekeeping',
-      
-        storageBucket: 'hw-timekeeping.appspot.com',
-      
-        messagingSenderId: '956298800838',
-      
-        appId: '1:956298800838:web:5dabecc75693486b43f1c7',
-      
+        apiKey: 'AIzaSyA31beHVFBEZlbGaHa2NrUYv4HvjAq31IA',
+        authDomain: 'hardworking-8888.firebaseapp.com',
+        projectId: 'hardworking-8888',
+        storageBucket: 'hardworking-8888.appspot.com',
+        messagingSenderId: '769195953001',
+        appId: '1:769195953001:web:6d5d56b947f868ef284bf8',
+        measurementId: 'G-MLYFL6LEMR',
     };
+    
       
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);

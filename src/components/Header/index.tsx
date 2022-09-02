@@ -4,17 +4,14 @@ import './media_query.less';
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 import { Col, Row } from 'antd';
 // import LanguageSelect from '../LanguageSelect';
-import React, { useEffect } from 'react';
+import React from 'react';
 import Title from './BreadcrumbTitle';
-import Project from './ProjectChoose';
 import UserOverView from './UserOverView';
 // import AppComponentBase from 'components/AppComponentBase';
 
-import { firestore } from 'firebase';
 import { observer } from 'mobx-react';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { listUserInfoAtom, userInfoAtom } from 'stores/atom/user';
-import utils from '../../utils/utils';
+import { useRecoilValue } from 'recoil';
+import { userInfoAtom } from 'stores/atom/user';
 
 export interface IHeaderProps {
   collapsed?: any;
@@ -25,16 +22,9 @@ export interface IHeaderProps {
 
 export const Header:React.FC <IHeaderProps> = observer((props)=>
 {
-    const [os, setOs] = React.useState('PC');
     const userInfo = useRecoilValue(userInfoAtom);
-    const setListUserInfo = useSetRecoilState(listUserInfoAtom);
     
-    useEffect(()=>
-    {
-        setOs(utils.getOS());
-        firestore.get('Users').then(setListUserInfo);
-    },[]);
-   
+
     return (
         <Row className="header-container">
             <Col
@@ -65,9 +55,7 @@ export const Header:React.FC <IHeaderProps> = observer((props)=>
             >
                 <Title data={props.data} />
             </Col>
-            <Col span={5}>
-                <Project os={os} />
-            </Col>
+            <Col span={5} />
                 
             
             <Col

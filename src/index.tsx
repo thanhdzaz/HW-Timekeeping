@@ -7,7 +7,7 @@ import * as ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 // import registerServiceWorker from './registerServiceWorker';
-import { auth, firebaseApp, firestore } from 'firebase';
+import { auth, firebaseAppForUser, firestore } from 'firebase';
 import { RootProvider, rootStore, useStore } from 'stores';
 import initializeStores from './stores/storeInitializer';
 
@@ -18,7 +18,6 @@ import moment from 'moment';
 import 'moment/locale/vi';
 import { useState } from 'react';
 import { RecoilRoot, useSetRecoilState } from 'recoil';
-import { permissionsAtom } from 'stores/atom/permission';
 import { userInfoAtom } from 'stores/atom/user';
 
 
@@ -33,20 +32,18 @@ import { userInfoAtom } from 'stores/atom/user';
 const stores = initializeStores();
 moment().locale('vi');
 
-firebaseApp();
+firebaseAppForUser();
 
 
 const RootApp = () =>
 {
     const {
-        projectStore,
         sessionStore,
-        permission,
+
     } = useStore();
     const [appState,setAppState] = useState(false);
     const [loginState,setLoginState] = useState(false);
     const setUser = useSetRecoilState(userInfoAtom);
-    const setPermissions = useSetRecoilState(permissionsAtom);
 
     auth.onAuthStateChanged((user)=>
     {
@@ -57,14 +54,13 @@ const RootApp = () =>
             {
                 setUser(doc);
 
-                sessionStore.setCurrentLogin(doc).then(val=>
+                sessionStore.setCurrentLogin(doc).then(()=>
                 {
-                    const p = permission.getMyPermission(val);
-                    setPermissions(p);
+                
+
                     setAppState(true);
                     setLoginState(true);
                 });
-                projectStore.getProject(user.uid);
             });
         }
         else
