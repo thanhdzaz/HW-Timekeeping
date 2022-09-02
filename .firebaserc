@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "hardworking-8888"
-  }
+    "default": "hw-timekeeping",
+    "time": "hw-timekeeping"
+  },
+  "targets": {}
 }
