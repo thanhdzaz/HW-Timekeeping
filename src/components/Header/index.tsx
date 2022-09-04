@@ -4,14 +4,15 @@ import './media_query.less';
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 import { Col, Row } from 'antd';
 // import LanguageSelect from '../LanguageSelect';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Title from './BreadcrumbTitle';
 import UserOverView from './UserOverView';
 // import AppComponentBase from 'components/AppComponentBase';
 
 import { observer } from 'mobx-react';
-import { useRecoilValue } from 'recoil';
-import { userInfoAtom } from 'stores/atom/user';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { listUserInfoAtom, userInfoAtom } from 'stores/atom/user';
+import { firestore } from 'firebase';
 
 export interface IHeaderProps {
   collapsed?: any;
@@ -23,7 +24,13 @@ export interface IHeaderProps {
 export const Header:React.FC <IHeaderProps> = observer((props)=>
 {
     const userInfo = useRecoilValue(userInfoAtom);
+    const setListUserInfo = useSetRecoilState(listUserInfoAtom);
     
+    useEffect(()=>
+    {
+        firestore.get('Users').then(setListUserInfo);
+    },[]);
+   
 
     return (
         <Row className="header-container">

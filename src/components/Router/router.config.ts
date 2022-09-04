@@ -45,7 +45,22 @@ export const appRouters: any = [
         name: 'attendance',
         title: 'Chấm công',
         component: LoadableComponent(() => import('scenes/Attendance')),
-        
+    },
+    {
+        path: '/my-timekeeping',
+        name: 'my-timekeeping',
+        permission: '',
+        title: 'Bảng chấm công của tôi',
+        showInMenu: true,
+        component: LoadableComponent(() => import('scenes/MyTimekeeping')),
+    },
+    {
+        path: '/total-timekeeping',
+        name: 'total-timekeeping',
+        permission: '',
+        title: 'Bảng tổng hợp chấm công',
+        showInMenu: true,
+        component: LoadableComponent(() => import('scenes/TotalTimekeeping')),
     },
     {
         path: '/logout',

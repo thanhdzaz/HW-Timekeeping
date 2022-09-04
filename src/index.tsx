@@ -7,7 +7,7 @@ import * as ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 // import registerServiceWorker from './registerServiceWorker';
-import { auth, firebaseAppForUser, firestore } from 'firebase';
+import { auth, firebaseApp, firestore } from 'firebase';
 import { RootProvider, rootStore, useStore } from 'stores';
 import initializeStores from './stores/storeInitializer';
 
@@ -32,7 +32,7 @@ import { userInfoAtom } from 'stores/atom/user';
 const stores = initializeStores();
 moment().locale('vi');
 
-firebaseAppForUser();
+firebaseApp();
 
 
 const RootApp = () =>
