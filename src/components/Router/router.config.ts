@@ -57,7 +57,7 @@ export const appRouters: any = [
     {
         path: '/total-timekeeping',
         name: 'total-timekeeping',
-        permission: '',
+        permission: 'TT_VIEW',
         title: 'Bảng tổng hợp chấm công',
         showInMenu: true,
         component: LoadableComponent(() => import('scenes/TotalTimekeeping')),
