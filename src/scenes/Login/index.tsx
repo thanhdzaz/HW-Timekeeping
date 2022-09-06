@@ -24,6 +24,9 @@ import React from 'react';
 import rules from './index.validation';
 import Cookies from 'js-cookie';
 import ProjectStore from 'stores/projectStore';
+import Notify from 'components/Notify';
+import { firestore } from 'firebase';
+import { UserInfo } from 'models/User/dto';
 
 
 const FormItem = Form.Item;
@@ -85,51 +88,49 @@ class Login extends React.Component<ILoginProps, State>
           {
               // Signed in
               const user = userCredential.user;
-              console.log(user,'hehe');
-              Cookies.set('Abp.AuthToken',user.getIdToken());
+              await firestore.getByDoc('Users',user.uid).then((doc:UserInfo)=>
+              {
+                  if (doc.disable)
+                  {
+                      Notify('error','Tài khoản của bạn bị khóa hãy liên hệ quản trị viên để biết thêm chi tiết');
+                      auth.signOut();
+                  }
+                  else
+                  {
+                      Cookies.set('Abp.AuthToken',user.getIdToken());
+                      const { state } = location as any;
+                      
+                      window.location = state ? state.from.pathname : '/';
+                  }
+                
+              });
               this.setState({ loading: false });
               
-              const { state } = location as any;
-              
-              window.location = state ? state.from.pathname : '/';
-            
-              // ...
+
           })
           .catch((_error) =>
           {
-              //   const errorCode = error.code;
-              //   const errorMessage = error.message;
+              const errorCode = _error.code;
+              this.setState({ loading: false });
+
+              switch (errorCode)
+              {
+                  case 'auth/invalid-email':
+                  {
+                      Notify('error',`Địa chỉ email '${values.userNameOrEmailAddress}' không tồn tại trên hệ thống tài khoản!!`);
+                      break;
+                  }
+                  case 'auth/wrong-password':
+                  {
+                      Notify('error','Bạn đã nhập sai mật khẩu vui lòng kiểm tra lại!!');
+                      break;
+                  }
+                  default:
+                      break;
+              }
+
           });
 
-      //   await authenticationStore
-      //       ?.login(values)
-      //       .then((_rs) =>
-      //       {
-      //           if (_rs === true)
-      //           {
-
-              
-      //               sessionStorage.setItem('rememberMe', loginModel.rememberMe ? '1' : '0');
-      //               const { state } = location;
-      //               window.location = state ? state.from.pathname : '/';
-      //           }
-      //           else
-      //           {
-                  
-      //               setTimeout(() =>
-      //               {
-      //                   this.setState({ loading: false });
-      //                   Notify('error',_rs);
-      //               },1000);
-      //           }
-      //       })
-      //       .catch((err) =>
-      //       {
-      //           const error = err as AxiosError;
-      //           console.log('catch',error);
-      //           Notify('error', error.response?.data.error.details);
-      //       });
-      //   //   this.setState({ loading: false });
 
   };
   showModal = (): void =>
