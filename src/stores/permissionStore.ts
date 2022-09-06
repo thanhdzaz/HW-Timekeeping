@@ -17,7 +17,12 @@ export class Permissions
 
     constructor()
     {
-        firestore;
+        firestore && firestore.get('Role').then((val)=>
+        {
+            console.log(val);
+            
+            this.permissionsList = val;
+        });
     }
 
     @action

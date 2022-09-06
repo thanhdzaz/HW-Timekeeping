@@ -2,13 +2,14 @@ import './index.less';
 
 
 import { Avatar, Col, Layout, Menu } from 'antd';
-import { isGranted, L } from 'lib/abpUtility';
+import { L, isGranted } from 'lib/abpUtility';
 
 import AbpLogo from 'asset/navigation/logo.png';
+import { appRouters } from '../Router/router.config';
+import utils from 'utils/utils';
+import { Link } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { permissionsAtom } from 'stores/atom/permission';
-import utils from 'utils/utils';
-import { appRouters } from '../Router/router.config';
 
 const { Sider } = Layout;
 const { SubMenu } = Menu;
@@ -89,11 +90,9 @@ const SiderMenu = (props: ISiderMenuProps): JSX.Element =>
                 collapsible
                 onCollapse={onCollapse}
             >
-                <a
-                    href={'https://hardworking-8888.web.app/'}
+                <Link
+                    to={'/dashboard'}
                     title={'Trang chủ'}
-                    target="_blank"
-                    rel="noreferrer"
                 >
                     {collapsed
                         ? (
@@ -113,7 +112,7 @@ const SiderMenu = (props: ISiderMenuProps): JSX.Element =>
                                     <b style={{ color: 'white',letterSpacing: '1px', fontSize: 15,lineHeight: 5,textAlign: 'center' }}>Hardworking</b>
                                 </Col>
                             )}
-                </a>
+                </Link>
                 <Menu
                     id="sidermenu-scrollable"
                     theme="dark"

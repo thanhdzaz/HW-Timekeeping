@@ -18,6 +18,7 @@ import moment from 'moment';
 import 'moment/locale/vi';
 import { useState } from 'react';
 import { RecoilRoot, useSetRecoilState } from 'recoil';
+import { permissionsAtom } from 'stores/atom/permission';
 import { userInfoAtom } from 'stores/atom/user';
 
 
@@ -38,12 +39,14 @@ firebaseApp();
 const RootApp = () =>
 {
     const {
+        projectStore,
         sessionStore,
-
+        permission,
     } = useStore();
     const [appState,setAppState] = useState(false);
     const [loginState,setLoginState] = useState(false);
     const setUser = useSetRecoilState(userInfoAtom);
+    const setPermissions = useSetRecoilState(permissionsAtom);
 
     auth.onAuthStateChanged((user)=>
     {
@@ -54,13 +57,15 @@ const RootApp = () =>
             {
                 setUser(doc);
 
-                sessionStore.setCurrentLogin(doc).then(()=>
+                sessionStore.setCurrentLogin(doc).then(val=>
                 {
-                
-
+                    const p = permission.getMyPermission(val);
+                    console.log(p);
+                    setPermissions(p);
                     setAppState(true);
                     setLoginState(true);
                 });
+                projectStore.getProject(user.uid);
             });
         }
         else
